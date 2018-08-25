@@ -1,3 +1,54 @@
 .list-group-item {
   line-height: 2.5;
 }
+#home {
+  height: 400px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(/images/diner.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-color: black;
+}
+#home .home-content {
+  padding: 20px;
+  /* background-color: #fff; */
+  background-color: none;
+  font-family: 'Lobster', cursive;
+  font-size: 2em;
+  font-weight: bold;
+  color: rgb(36, 134, 163);
+  /* change the font color */
+  -webkit-animation-name: title;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 6s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: title;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@-webkit-keyframes title {
+  from {
+      color: rgb(36, 134, 163);
+  }
+  to {
+      color: rgb(143, 87, 42);
+  }
+}
+
+
+#cardDiv {
+  display: flex;
+   justify-content: space-between;
+   /* background-color: black; */
+}
+
+.card {
+  color: rgb(36, 134, 163);
+  background-color: black; 
+}
