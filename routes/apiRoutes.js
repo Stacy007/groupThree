@@ -43,21 +43,24 @@ module.exports = function(app) {
     firebase
       .auth()
       .createUserWithEmailAndPassword(req.body.email, req.body.password)
-      .then(function(success){
-        console.log("user created account successfully");
-        res.redirect("/home");
-      } ,function(error) {
-
-        // Handle Errors here.
-        var errorCode = error.code;
-        var objectToRender = {
-          errorMessage: error.message,
-          email: req.body.email
+      .then(
+        function(success) {
+          console.log(success);
+          console.log("user created account successfully");
+          res.redirect("/home");
+        },
+        function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var objectToRender = {
+            errorMessage: error.message,
+            email: req.body.email
+          };
+          // ...
+          console.log(errorCode, objectToRender.errorMessage);
+          res.render("createAccount", objectToRender);
         }
-        // ...
-        console.log(errorCode, objectToRender.errorMessage);
-        res.render("createAccount", objectToRender);
-      })
+      );
   });
 
   // Perform login
@@ -65,20 +68,24 @@ module.exports = function(app) {
     firebase
       .auth()
       .signInWithEmailAndPassword(req.body.email, req.body.password)
-      .then( function(success) {
-        console.log("user logged in successfully");
-        res.redirect("/home");
-      }, function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var objectToRender = {
-          errorMessage: error.message,
-          email: req.body.email
+      .then(
+        function(success) {
+          console.log(success);
+          console.log("user logged in successfully");
+          res.redirect("/home");
+        },
+        function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var objectToRender = {
+            errorMessage: error.message,
+            email: req.body.email
+          };
+
+          // ...
+          console.log(errorCode, objectToRender.errorMessage);
+          res.render("login", objectToRender);
         }
-        
-        // ...
-        console.log(errorCode, objectToRender.errorMessage);
-        res.render("login", objectToRender);
-      })
+      );
   });
 };
