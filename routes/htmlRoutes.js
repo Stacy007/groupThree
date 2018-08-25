@@ -16,21 +16,26 @@ module.exports = function(app) {
 
   // Load index page
   app.get("/home", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
+    db.Item.findAll({}).then(function(dbItems) {
       res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
+        items: dbItems
       });
     });
   });
 
   // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.render("example", {
-        example: dbExample
+  app.get("/item/:id", function(req, res) {
+    db.Item.findOne({ where: { id: req.params.id } }).then(function(dbItem) {
+      res.render("item", {
+        item: dbItem
+      });
+    });
+  });
+
+  app.get("/newitem", function(req, res) {
+    db.Item.findAll({}).then(function(dbItems) {
+      res.render("newitem", {
+        items: dbItems
       });
     });
   });
