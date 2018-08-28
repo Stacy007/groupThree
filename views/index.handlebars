@@ -1,25 +1,40 @@
+<div id="header">
+  <div class="home-content text-center">
+    <h1>Food With Friends <br> The Food We Eat!
+    </h1>
+  </div>
+</div>
+
+
 <div id="home">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-
-
-
-        <h3>You Should Try:</h3>
-        <ol id="item-list">
+      <div class="col-sm-12 text-center">
+        <!-- UNDEFINED??? <h1>{{msg}}</h1> -->
+        <div class="accordion" id="accordionExample">
           {{#each items}}
-          <li data-id="{{this.id}}">
+            <div class="card">
+              <div class="card-header" id="{{this.id}}">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#body{{this.id}}" aria-expanded="true" aria-controls="collapseOne">
+                    {{this.text}}<a href="/"> -{{this.author}}</a>
+                  </button>
+                </h5>
+              </div>
 
-          <b>{{this.text}}</b><a>. -{{this.author}}</a>
-
-          </li>
+              <div id="body{{this.id}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+               <p>{{this.note}}</p>
+                </div>
+              </div>
+            </div>
           {{/each}}
-        </ol>
+        </div>
         <a href="newitem">Enter new recommendation</a>
-      </div>
+      </div>        
     </div>
   </div>
+</div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
