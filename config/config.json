@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "devPW123",
-    "database": "exampledb",
+    "database": "item_db",
     "host": "localhost",
     "dialect": "mysql"
   },

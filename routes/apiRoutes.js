@@ -15,10 +15,20 @@ var config = {
 firebase.initializeApp(config);
 
 module.exports = function(app) {
-  // Get all examples
+  // Get all items
   app.get("/api/items", function(req, res) {
-    db.Item.findAll({}).then(function(dbItems) {
+    db.Item.findAll({
+      where: {},
+      include: [db.Author, db.Category]
+    }).then(function(dbItems) {
       res.json(dbItems);
+    });
+  });
+
+  // Load categories for menus
+  app.get("/api/categories", function(req, res) {
+    db.Category.findAll({}).then(function(dbCategories) {
+      res.json(dbCategories);
     });
   });
 
@@ -26,6 +36,13 @@ module.exports = function(app) {
   app.post("/api/items", function(req, res) {
     db.Item.create(req.body).then(function(dbItem) {
       res.json(dbItem);
+    });
+  });
+
+  // Create a review (also called comment)
+  app.post("/api/review", function(req, res) {
+    db.Review.create(req.body).then(function(dbReview) {
+      res.json(dbReview);
     });
   });
 
@@ -85,5 +102,14 @@ module.exports = function(app) {
           res.render("login", objectToRender);
         }
       );
+  });
+  // Test while developing ouputing reviews
+  app.get("/revtest", function(req, res) {
+    db.Item.findAll({
+      where: {},
+      include: [db.Author, db.Category, db.Review]
+    }).then(function(dbItems) {
+      res.json(dbItems);
+    });
   });
 };
