@@ -1,10 +1,10 @@
 // Get references to page elements
 var $itemText = $("#item-text");
 var $itemNote = $("#item-note");
-var $itemNum = $("#item-number");
 var $itemCat = $("#category");
 var $submitBtn = $("#submit");
 var $itemList = $("#item-list");
+var $comment = $("#review");
 var $revsubmit = $("#revsubmit");
 var authId = 1;
 
@@ -26,7 +26,7 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/review",
+      url: "/api/review",
       data: JSON.stringify(review)
     });
   },
@@ -53,9 +53,9 @@ var handleFormSubmit = function(event) {
     text: $itemText.val().trim(),
     note: $itemNote.val().trim(),
     AuthorId: authId,
-    CategoryId: $itemCat.val().trim()
+    CategoryId: $itemCat.val()
   };
-
+  console.log(item);
   API.saveItem(item).then(function() {
     window.location.assign("/home");
   });
@@ -66,13 +66,13 @@ var handleFormSubmit = function(event) {
 
 var newReviewSubmit = function(event) {
   event.preventDefault();
+  console.log("new review submit")
 
   var review = {
-    comment: $itemNote.val().trim(),
+    comment: $comment.val().trim(),
     AuthorId: authId,
-    ItemId: $itemNum.val().trim()
+    ItemId: 3
   };
-
   API.saveReview(review).then(function() {
     window.location.assign("/home");
   });

@@ -103,13 +103,4 @@ module.exports = function(app) {
         }
       );
   });
-  // Test while developing ouputing reviews
-  app.get("/revtest", function(req, res) {
-    db.Item.findAll({
-      where: {},
-      include: [db.Author, db.Category, db.Review]
-    }).then(function(dbItems) {
-      res.json(dbItems);
-    });
-  });
 };
