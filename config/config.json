@@ -1,15 +1,14 @@
 {
   "development": {
     "username": "root",
-    "port": "3310",
-    "password": "ilf212",
-    "database": "exampledb",
+    "password": "",
+    "database": "item_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "dev123PW",
+    "password": "",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
