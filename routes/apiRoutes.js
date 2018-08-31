@@ -64,7 +64,6 @@ module.exports = function(app) {
           console.log("user created account successfully");
 
           // Want to stuff email and nickname in author's table here
-          console.log("Nickname = ", req.body.nickname);
           db.Author.create({
             name: req.body.nickname,
             email: req.body.email

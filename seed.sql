@@ -3,15 +3,15 @@ CREATE DATABASE item_db;
 USE item_db;
 
 INSERT INTO Authors (name, email, createdAT, updatedAT)
-VALUES ("JohnB","test@test.com", "2018-08-27 23:46:51", "2018-08-27 23:46:51");
+VALUES ("Cooper","cooper@jbeatty.com", "2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Authors (name, email, createdAT, updatedAT)
 VALUES ("Jamie","jamie@jbeatty.com", "2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Authors (name, email, createdAT, updatedAT)
 VALUES ("Annette","test@test.com","2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Authors (name, email, createdAT, updatedAT)
-VALUES ("Stacy","test@test.com","stacy", "2018-08-27 23:46:51", "2018-08-27 23:46:51");
+VALUES ("Fred","freddy@jbeatty.com", "2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Authors (name, email, createdAT, updatedAT)
-VALUES ("Charles","test@test.com","2018-08-27 23:46:51", "2018-08-27 23:46:51");
+VALUES ("AnotherFred","freddy1@jbeatty.com","2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Authors (name, email, createdAT, updatedAT)
 VALUES ("Philip","test@test.com","2018-08-27 23:46:51", "2018-08-27 23:46:51");
 

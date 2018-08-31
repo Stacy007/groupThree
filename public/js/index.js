@@ -7,7 +7,6 @@ var $itemList = $("#item-list");
 var $comment = $("#review");
 var $revsubmit = $("#revsubmit");
 var authId = window.localStorage.getItem("AuthID");
-console.log("Index.js: authId = ", authId);
 
 // The API object contains methods for each kind of request we'll make
 var API = {
