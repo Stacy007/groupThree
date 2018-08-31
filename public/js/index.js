@@ -6,7 +6,6 @@ var $itemCat = $("#category");
 var $submitBtn = $("#submit");
 var $itemList = $("#item-list");
 var $revsubmit = $("#revsubmit");
-var categorySelect = $("#category");
 var authId = 1;
 
 // The API object contains methods for each kind of request we'll make
@@ -93,35 +92,6 @@ var handleDeleteBtnClick = function() {
     window.location.assign("/home");
   });
 };
-
-getCategories();
-
-// A function to get Categories and then render our list of Categories
-function getCategories() {
-  $.get("/api/Categories", renderCategoryList);
-}
-// Function to either render a list of Categories, or if there are none, direct the user to the page
-// to create a Category first
-function renderCategoryList(data) {
-  // if (!data.length) {
-  //   window.location.href = "/Categories";
-  // }
-  $(".hidden").removeClass("hidden");
-  var rowsToAdd = [];
-  for (var i = 0; i < data.length; i++) {
-    rowsToAdd.push(createCategoryRow(data[i]));
-  }
-  categorySelect.empty();
-  categorySelect.append(rowsToAdd);
-}
-
-// Creates the Category options in the dropdown
-function createCategoryRow(Category) {
-  var listOption = $("<option>");
-  listOption.attr("value", Category.id);
-  listOption.text(Category.name);
-  return listOption;
-}
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
