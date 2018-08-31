@@ -93,6 +93,11 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+// Add autocomplete functionality to recommendation
+autocomplete = new google.maps.places.Autocomplete(
+  document.getElementById("item-text")
+);
+
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $itemList.on("click", ".delete", handleDeleteBtnClick);
