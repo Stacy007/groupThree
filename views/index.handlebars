@@ -16,17 +16,18 @@
             <div class="card">
               <div class="card-header" id="{{this.id}}">
                 <h5 class="mb-0">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#body{{this.id}}" aria-expanded="true" aria-controls="collapseOne">
+                  <button  type="button" data-toggle="collapse" data-target="#body{{this.id}}" aria-expanded="true" aria-controls="collapseOne">
                     {{this.text}}<a href="/"> -{{this.author}}</a>
                   </button>
                 </h5>
               </div>
 
-              <div id="body{{this.id}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div id="body{{this.id}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample" class="data-id">
                 <div class="card-body">
                <p>{{this.note}}</p>
                 </div>
               </div>
+              {{!-- <button type="button" class="btn btn-info">Add a Comment</button> --}}
             </div>
           {{/each}}
         </div>
@@ -39,4 +40,3 @@
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
-

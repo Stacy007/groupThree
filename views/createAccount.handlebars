@@ -1,6 +1,7 @@
-<div class="account">
+<div id="account">
 <h1>Create Account</h1>
-
+<br>
+<br>
 <form action="/api/createAccount" method="Post">
     <label>Email</label>
     <input type="text" name="email" value={{email}}>
@@ -10,7 +11,7 @@
 </form>
 
 <p>{{errorMessage}}</p>
-<form action="/createAccount">
-    <button>Don't have an Account?</button>
+<form action="/">
+    <button>Already have an Account?</button>
 </form>
 </div>

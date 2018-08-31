@@ -3,7 +3,7 @@ var $itemText = $("#item-text");
 var $itemNote = $("#item-note");
 var $submitBtn = $("#submit");
 var $itemList = $("#item-list");
-var itemAuthor = "JohnB"
+var itemAuthor = "JohnB";
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -31,7 +31,6 @@ var API = {
   }
 };
 
-
 // handleFormSubmit is called whenever we submit a new item
 // Save the new item to the db and refresh the list
 var handleFormSubmit = function(event) {
@@ -43,11 +42,8 @@ var handleFormSubmit = function(event) {
     note: $itemNote.val().trim()
   };
 
-
   API.saveItem(item).then(function() {
-    window.location.assign("/home")
-
-
+    window.location.assign("/home");
   });
 
   $itemText.val("");
@@ -62,7 +58,7 @@ var handleDeleteBtnClick = function() {
     .attr("data-id");
 
   API.deleteItem(idToDelete).then(function() {
-    window.location.assign("/home")
+    window.location.assign("/home");
   });
 };
 

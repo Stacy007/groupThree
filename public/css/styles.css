@@ -1,6 +1,6 @@
-body {
+/* body {
   background-color:lightgray;
-}
+} */
 #home {
   background-color:lightgray;
   position: relative;
@@ -33,15 +33,15 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  background-color: black;
-  opacity: 0.7;
+  background-color: #888;
+  background-blend-mode: multiply;
 }
 #header .home-content {
   padding: 20px;
   /* background-color: #fff; */
   opacity: none;
   background-color: none;
-  text-shadow: 1px 1px 2px pink;
+  text-shadow: 1px 1px 2px rgb(4, 61, 77);
   font-family: 'Lobster', cursive;
   font-size: 2em;
   font-weight: bold;
@@ -72,18 +72,41 @@ body {
   background-size: cover; 
   color: rgb(95, 102, 107);
 }
-.account {
-  background-image: url(/images/dinner-party.jpg);
+#account {
+  background-image: url(/images/adventure-awaits.jpg);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center center;
   background-size: cover;
-  min-height: 100%;
-  min-width: 1024px;
+  height: 100%;
   width: 100%;
-  height: auto;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: black;
   opacity: 0.7;
+  text-align: center;
+  color: aquamarine;
+  text-shadow:
+  -1px -1px 0 #555,
+  1px -1px 0 #555,
+  -1px 1px 0 #555,
+  1px 1px 0 #555;
+}
+.login {
+  background-image: url(/images/dinner-party.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #888;
+  text-align: center;
+  color: aquamarine;
+  text-shadow:
+  -1px -1px 0 #333,
+  1px -1px 0 #333,
+  -1px 1px 0 #333,
+  1px 1px 0 #333;
 }
