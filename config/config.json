@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "devPW123",
     "database": "item_db",
     "host": "localhost",
     "dialect": "mysql"
