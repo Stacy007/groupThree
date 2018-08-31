@@ -62,12 +62,9 @@ module.exports = function(app) {
   });
 
   app.get("/newitem", function(req, res) {
-    db.Item.findAll({
-      where: {},
-      include: [db.Author, db.Category]
-    }).then(function(dbItems) {
+    db.Category.findAll({}).then(function(dbCategories) {
       res.render("newitem", {
-        items: dbItems
+        cats: dbCategories
       });
     });
   });
