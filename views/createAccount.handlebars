@@ -1,11 +1,16 @@
 <h1>Create Account</h1>
 
-<form action="/api/createAccount" method="Post">
+<form class="create-form" action="/api/createAccount" method="Post">
     <label>Email</label>
     <input type="text" name="email" value={{email}}>
     <label>Password</label>
     <input type="text" name="password">
+    <label>Nickname</label>
+    <input type="text" name="nickname">
     <button>Submit</button>
 </form>
 
 {{errorMessage}}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/login.js"></script>

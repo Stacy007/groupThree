@@ -70,19 +70,18 @@ module.exports = function(app) {
             email: req.body.email
           }).then(function() {
             // Need to put this back to capture in html processing
-            res.redirect("/home");
+            res.json({ success: "Updated Successfully", status: 200 });
           });
         },
         function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var objectToRender = {
-            errorMessage: error.message,
-            email: req.body.email
+            errorMessage: error.message
           };
-          // ...
+          // Return error
           console.log(errorCode, objectToRender.errorMessage);
-          res.status(401).render("createAccount", objectToRender);
+          res.json(401, objectToRender.errorMessage);
         }
       );
   });
@@ -97,7 +96,6 @@ module.exports = function(app) {
           console.log(success);
           console.log("user logged in successfully");
           res.json({ success: "Updated Successfully", status: 200 });
-          // res.redirect("/home");
         },
         function(error) {
           // Handle Errors here.
@@ -106,10 +104,9 @@ module.exports = function(app) {
             errorMessage: error.message
           };
 
-          // ...
+          // Return error
           console.log(errorCode, objectToRender.errorMessage);
           res.json(401, objectToRender.errorMessage);
-          // res.status(401).render("login", objectToRender);
         }
       );
   });

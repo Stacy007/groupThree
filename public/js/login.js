@@ -11,8 +11,8 @@ $(".login-form").on("submit", function(event) {
   $.get("/api/nickname/" + emailAddr, function(data) {
     if (data) {
       // Set the nickname
-      console.log("nickname = ", data.name);
-      window.localStorage.setItem("nickname", data.name);
+      console.log("AuthID = ", data.id);
+      window.localStorage.setItem("AuthID", data.id);
       var userdata = {
         email: emailAddr,
         password: passIt
@@ -27,5 +27,40 @@ $(".login-form").on("submit", function(event) {
         alert(data.responseText);
       });
     }
+  });
+});
+
+$(".create-form").on("submit", function(event) {
+  event.preventDefault();
+
+  // Grab the email login
+  var emailAddr = document.getElementsByName("email")[0].value;
+  var passIt = document.getElementsByName("password")[0].value;
+  var nickname = document.getElementsByName("nickname")[0].value;
+  console.log("email = ", emailAddr);
+  console.log("password = ", passIt);
+
+  var userdata = {
+    email: emailAddr,
+    password: passIt,
+    nickname: nickname
+  };
+
+  // Create the account
+  $.post("/api/createAccount", userdata, function(data, status) {
+    console.log("data ", data, "status ", status);
+
+    // Use endpoint to get the new AuthID
+    $.get("/api/nickname/" + emailAddr, function(data) {
+      if (data) {
+        // Grab it and set it in local storage
+        console.log("AuthID = ", data.id);
+        window.localStorage.setItem("AuthID", data.id);
+        window.location.assign("/home");
+      }
+    });
+  }).fail(function(data) {
+    console.log("error ", data.responseText);
+    alert(data.responseText);
   });
 });
