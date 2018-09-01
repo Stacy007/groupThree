@@ -62,18 +62,25 @@ module.exports = function(app) {
         function(success) {
           console.log(success);
           console.log("user created account successfully");
-          res.redirect("/home");
+
+          // Want to stuff email and nickname in author's table here
+          db.Author.create({
+            name: req.body.nickname,
+            email: req.body.email
+          }).then(function() {
+            // Need to put this back to capture in html processing
+            res.json({ success: "Updated Successfully", status: 200 });
+          });
         },
         function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var objectToRender = {
-            errorMessage: error.message,
-            email: req.body.email
+            errorMessage: error.message
           };
-          // ...
+          // Return error
           console.log(errorCode, objectToRender.errorMessage);
-          res.status(401).render("createAccount", objectToRender);
+          res.json(401, objectToRender.errorMessage);
         }
       );
   });
@@ -87,20 +94,30 @@ module.exports = function(app) {
         function(success) {
           console.log(success);
           console.log("user logged in successfully");
-          res.redirect("/home");
+          res.json({ success: "Updated Successfully", status: 200 });
         },
         function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var objectToRender = {
-            errorMessage: error.message,
-            email: req.body.email
+            errorMessage: error.message
           };
 
-          // ...
+          // Return error
           console.log(errorCode, objectToRender.errorMessage);
-          res.status(401).render("login", objectToRender);
+          res.json(401, objectToRender.errorMessage);
         }
       );
+  });
+
+  // Get Nickname
+  app.get("/api/nickname/:email", function(req, res) {
+    db.Author.findOne({
+      where: {
+        email: req.params.email
+      }
+    }).then(function(dbAuthor) {
+      res.json(dbAuthor);
+    });
   });
 };

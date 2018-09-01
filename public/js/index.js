@@ -6,7 +6,7 @@ var $submitBtn = $("#submit");
 var $itemList = $("#item-list");
 var $comment = $("#review");
 var $revsubmit = $("#revsubmit");
-var authId = 1;
+var authId = window.localStorage.getItem("AuthID");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -66,7 +66,7 @@ var handleFormSubmit = function(event) {
 
 var newReviewSubmit = function(event) {
   event.preventDefault();
-  console.log("new review submit")
+  console.log("new review submit");
 
   var review = {
     comment: $comment.val().trim(),
