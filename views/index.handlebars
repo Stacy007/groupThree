@@ -53,16 +53,15 @@
           </li>
           {{/each}}
         </ul>
-        <button class="btn" type="button" data-toggle="collapse" data-target="#butcollapse{{this.id}}" aria-expanded="false" aria-controls="butcollapseOne">
+        <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#butcollapse{{this.id}}" aria-expanded="false" aria-controls="butcollapseOne">
           Add Comment
         </button>
         <div id="butcollapse{{this.id}}" class="collapse hide" aria-labelledby="butheadingOne">
-        <form class="form-inline" action="/newreview/{{this.id}}">
+        <form class="form-inline">
           <div class="form-group">
-            {{!-- <label for="text">Ne</label> --}}
-            <input type="text" class="form-control" id="review" placeholder="Enter comment here" name="review">
+            <textarea class="form-control" id="review" aria-describedby="review" placeholder="I think....."></textarea>
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" id="revsubmit" class="btn btn-default">Submit</button>
           </div>
         </form>
       </div>
@@ -82,6 +81,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
   crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-  crossorigin="anonymous"></script> {{!--
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
