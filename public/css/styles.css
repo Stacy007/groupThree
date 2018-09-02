@@ -1,13 +1,27 @@
-/* body {
-  background-color:lightgray;
-} */
+/* this is for the index.handlebars */
+/* body image */
+.index-body {
+  background-image: url(/images/checkerboard.jpg);
+  height: 100%;
+  width: 100%;
+}
+.nav-width{
+  width: 600px;
+  justify-content: center;
+}
+.navbar-brand {
+  align-items: center;
+}
+.card-width {
+  width: 600px;
+}
 #home {
-  background-color:lightgray;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-family: 'Lobster', cursive;
 }
 #item-list {
@@ -70,7 +84,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover; 
-  color: rgb(95, 102, 107);
+  color: rgb(161, 167, 173);
 }
 #account {
   background-image: url(/images/adventure-awaits.jpg);
@@ -84,7 +98,8 @@
   left: 0;
   opacity: 0.7;
   text-align: center;
-  color: aquamarine;
+  font-family: 'Poppins', sans-serif;
+  color: rgb(224, 162, 69);
   text-shadow:
   -1px -1px 0 #555,
   1px -1px 0 #555,

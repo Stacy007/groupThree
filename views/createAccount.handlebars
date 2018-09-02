@@ -1,14 +1,17 @@
 <div id="account">
 <h1>Create Account</h1>
-
+<br>
+<br>
 <form class="create-form" action="/api/createAccount" method="Post">
-    <label>Email</label>
+    <label><h3>Email</h3></label>
     <input type="text" name="email" value={{email}}>
-    <label>Password</label>
+    <label><h3>Password</h3></label>
     <input type="text" name="password">
-    <label>Nickname</label>
+    <br>
+    <br>
+    <label><h3>Nickname</h3></label>
     <input type="text" name="nickname">
-    <button>Submit</button>
+    <button class="btn btn-outline-warning">Submit</button>
 </form>
 
 {{errorMessage}}
