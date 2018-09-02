@@ -67,8 +67,6 @@ module.exports = function(app) {
 
   // Perform account creation
   app.post("/api/createAccount", function(req, res) {
-    // Disabled eslint check on this line as the var is used later in this endpoint
-    var uid = ""; // eslint-disable-line no-unused-vars
     firebase
       .auth()
       .createUserWithEmailAndPassword(req.body.email, req.body.password)
@@ -99,8 +97,9 @@ module.exports = function(app) {
       );
   });
 
-  // Perform account creation
+  // Perform invite new user by email
   app.post("/api/invite", function(req, res) {
+    var uid = "";
     firebase
       .auth()
       .createUserWithEmailAndPassword(req.body.email, "1!dfAcfhe342")
