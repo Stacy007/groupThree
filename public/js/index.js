@@ -4,8 +4,6 @@ var $itemNote = $("#item-note");
 var $itemCat = $("#category");
 var $submitBtn = $("#submit");
 var $itemList = $("#item-list");
-var $comment = $("#review");
-var $revsubmit = $("#revsubmit");
 var authId = window.localStorage.getItem("AuthID");
 
 // The API object contains methods for each kind of request we'll make
@@ -16,7 +14,7 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/items",
+      url: "/api/items",
       data: JSON.stringify(item)
     });
   },
@@ -66,19 +64,19 @@ var handleFormSubmit = function(event) {
 
 var newReviewSubmit = function(event) {
   event.preventDefault();
-  console.log("new review submit");
-
+  var id = $(this).data("id");
+  var comment = $("#comment" + id)
+    .val()
+    .trim();
   var review = {
-    comment: $comment.val().trim(),
+    comment: comment,
     AuthorId: authId,
-    ItemId: 3
+    ItemId: id
   };
+  console.log("review: ", review);
   API.saveReview(review).then(function() {
-    window.location.assign("/home");
+    window.location.reload("true");
   });
-
-  $itemText.val("");
-  $itemNote.val("");
 };
 
 // handleDeleteBtnClick is called when an item's delete button is clicked
@@ -101,4 +99,4 @@ autocomplete = new google.maps.places.Autocomplete(
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $itemList.on("click", ".delete", handleDeleteBtnClick);
-$revsubmit.on("click", newReviewSubmit);
+$(".revsub").on("click", newReviewSubmit);
