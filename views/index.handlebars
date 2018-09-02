@@ -34,9 +34,9 @@
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn" type="button" data-toggle="collapse" data-target="#collapse{{this.id}}" aria-expanded="false" aria-controls="collapseOne">
+        <a class="btn" data-toggle="collapse" data-target="#collapse{{this.id}}" aria-expanded="false" aria-controls="collapseOne">
           {{this.text}}
-        </button>
+        </a>
         <a class="small"> -{{this.Author.name}}</a>
       </h5>
     </div>
@@ -53,15 +53,15 @@
           </li>
           {{/each}}
         </ul>
-        <button class="btn btn-secondary btn-sm" type="button" data-toggle="collapse" data-target="#butcollapse{{this.id}}" aria-expanded="false" aria-controls="butcollapseOne">
+        <a data-toggle="collapse" data-target="#butcollapse{{this.id}}" aria-expanded="false" aria-controls="butcollapseOne">
           Add Comment
-        </button>
+        </a>
         <div id="butcollapse{{this.id}}" class="collapse hide" aria-labelledby="butheadingOne">
         <form class="form-inline">
           <div class="form-group">
-            <textarea class="form-control" id="review" aria-describedby="review" placeholder="I think....."></textarea>
-          </div>
-          <button type="submit" id="revsubmit" class="btn btn-default">Submit</button>
+              <input id="comment{{this.id}}" placeholder="I think....."></input>
+            </div>
+            <button type="submit" data-id="{{this.id}}" class="btn btn-default revsub">Submit</button>
           </div>
         </form>
       </div>
@@ -69,9 +69,29 @@
   </div>
 </div>
 {{/each}}
-</div>
-
-        <a href="../newitem">Enter new recommendation</a><br>
+<div class="card">
+  <div class="card-header" id="footer">
+    <h5 class="mb-0">
+      <a class="btn" data-toggle="collapse" data-target="#revDrop" aria-expanded="false" aria-controls="collapseOne">
+        Add New Recommendation
+      </a>
+    </h5>
+    <div id="revDrop" class="collapse hide" aria-labelledby="butheadingOne">
+      <form class="form">
+        <div class="form-group">
+          <input type="text" id="item-text" class="form-control" aria-describedby="item-text" placeholder="Enter recommendation here">
+          <textarea class="form-control" id="item-note" aria-describedby="item-note" placeholder="Enter your notes here"></textarea>
+          <select class="form-control" id="category">
+            <option selected disabled>Category...</option>
+            {{#each cats}}
+            <option value={{this.id}}>{{this.name}}</option>
+            {{/each}}
+          </select>
+          <button id="submit" class="btn btn-primary float-left">Submit</button>
+      </form>
+      </div>
+    </div>
+  </div>
       </div>
     </div>
   </div>

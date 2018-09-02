@@ -35,7 +35,10 @@ $(".create-form").on("submit", function(event) {
   var emailAddr = document.getElementsByName("email")[0].value;
   var passIt = document.getElementsByName("password")[0].value;
   var nickname = document.getElementsByName("nickname")[0].value;
-
+  if (!nickname){
+    alert("Please enter a nickname");
+    return;
+  }
   var userdata = {
     email: emailAddr,
     password: passIt,

@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "devPW123",
     "database": "item_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "",
+    "password": "dev123PW",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",
