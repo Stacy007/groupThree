@@ -67,7 +67,8 @@ module.exports = function(app) {
 
   // Perform account creation
   app.post("/api/createAccount", function(req, res) {
-    var uid = ""
+    // Disabled eslint check on this line as the var is used later in this endpoint
+    var uid = ""; // eslint-disable-line no-unused-vars
     firebase
       .auth()
       .createUserWithEmailAndPassword(req.body.email, req.body.password)
@@ -110,22 +111,31 @@ module.exports = function(app) {
             .sendPasswordResetEmail(req.body.email)
             .then(
               function() {
-                admin.auth().getUserByEmail(req.body.email)
+                admin
+                  .auth()
+                  .getUserByEmail(req.body.email)
                   .then(function(userRecord) {
                     // See the UserRecord reference doc for the contents of userRecord.
                     uid = userRecord.uid;
-                    admin.auth().deleteUser(uid).then(
-                      function() {
-                        res.render("index")
-                      },
-                      function(error) {
-                        res.status(500).render("invite",{errorMessage: error.message})
-                      }
-                    )
+                    admin
+                      .auth()
+                      .deleteUser(uid)
+                      .then(
+                        function() {
+                          res.render("index");
+                        },
+                        function(error) {
+                          res
+                            .status(500)
+                            .render("invite", { errorMessage: error.message });
+                        }
+                      );
                   })
                   .catch(function(error) {
                     console.log("Error fetching user data:", error);
-                    res.status(500).render("invite",{errorMessage: error.message})
+                    res
+                      .status(500)
+                      .render("invite", { errorMessage: error.message });
                   });
               },
               function(error) {
