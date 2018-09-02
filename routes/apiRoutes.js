@@ -73,7 +73,7 @@ module.exports = function(app) {
           };
           // ...
           console.log(errorCode, objectToRender.errorMessage);
-          res.status(401).render("createAccount", objectToRender);
+          res.render("createAccount", objectToRender);
         }
       );
   });
@@ -99,7 +99,7 @@ module.exports = function(app) {
 
           // ...
           console.log(errorCode, objectToRender.errorMessage);
-          res.status(401).render("login", objectToRender);
+          res.render("login", objectToRender);
         }
       );
   });
