@@ -14,6 +14,19 @@ module.exports = function(app) {
     });
   });
 
+  // The create account with email optional is used in the email invite system
+  app.get("/createAccount/:email", function(req, res) {
+    res.render("createAccount", {
+      errorMessage: "",
+      email: req.params.email
+    });
+  });
+
+  // Page to invite a new user
+  app.get("/invite", function(req, res) {
+    res.render("invite");
+  });
+
   // Start with a list of possible categories for the category dropdown and then
   // provides list of recommendations with notes, authors and reviews
   // includes join of Author and Category as well as nested join with reviews and authors

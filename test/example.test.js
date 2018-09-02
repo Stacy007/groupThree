@@ -44,7 +44,10 @@ describe("GET /api/items", function() {
 
         expect(responseBody[1])
           .to.be.an("object")
-          .that.includes({ text: "Second Example", note: "Second Description" });
+          .that.includes({
+            text: "Second Example",
+            note: "Second Description"
+          });
 
         // The `done` function is used to end any asynchronous tests
         done();
