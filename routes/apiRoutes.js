@@ -1,5 +1,7 @@
 var db = require("../models");
 var firebase = require("firebase");
+var admin = require("firebase-admin");
+
 // Read and set environment variables
 require("dotenv").config();
 
@@ -12,6 +14,16 @@ var config = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 };
+
+admin.initializeApp({
+  credential: admin.credential.cert({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY
+  }),
+  databaseURL: process.env.FIREBASE_DATABASE_URL
+});
+
 firebase.initializeApp(config);
 
 module.exports = function(app) {
@@ -55,6 +67,7 @@ module.exports = function(app) {
 
   // Perform account creation
   app.post("/api/createAccount", function(req, res) {
+    var uid = ""
     firebase
       .auth()
       .createUserWithEmailAndPassword(req.body.email, req.body.password)
@@ -81,6 +94,57 @@ module.exports = function(app) {
           // Return error
           console.log(errorCode, objectToRender.errorMessage);
           res.json(401, objectToRender.errorMessage);
+        }
+      );
+  });
+
+  // Perform account creation
+  app.post("/api/invite", function(req, res) {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(req.body.email, "1!dfAcfhe342")
+      .then(
+        function() {
+          firebase
+            .auth()
+            .sendPasswordResetEmail(req.body.email)
+            .then(
+              function() {
+                admin.auth().getUserByEmail(req.body.email)
+                  .then(function(userRecord) {
+                    // See the UserRecord reference doc for the contents of userRecord.
+                    uid = userRecord.uid;
+                    admin.auth().deleteUser(uid).then(
+                      function() {
+                        res.render("index")
+                      },
+                      function(error) {
+                        res.status(500).render("invite",{errorMessage: error.message})
+                      }
+                    )
+                  })
+                  .catch(function(error) {
+                    console.log("Error fetching user data:", error);
+                    res.status(500).render("invite",{errorMessage: error.message})
+                  });
+              },
+              function(error) {
+                var objectToRender = {
+                  errorMessage: error.message
+                };
+                // Return error
+                res.status(401);
+                res.render("invite", objectToRender.errorMessage);
+              }
+            );
+        },
+        function(error) {
+          var objectToRender = {
+            errorMessage: error.message
+          };
+          // Return error
+          res.status(401);
+          res.render("invite", objectToRender);
         }
       );
   });
