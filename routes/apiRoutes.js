@@ -51,6 +51,13 @@ module.exports = function(app) {
     });
   });
 
+  // Create a new item
+  app.post("/api/category", function(req, res) {
+    db.Category.create(req.body).then(function(dbCategory) {
+      res.json(dbCategory);
+    });
+  });
+
   // Create a review (also called comment)
   app.post("/api/review", function(req, res) {
     db.Review.create(req.body).then(function(dbReview) {

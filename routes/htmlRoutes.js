@@ -81,13 +81,10 @@ module.exports = function(app) {
       });
     });
   });
-  app.get("/newreview", function(req, res) {
-    db.Item.findAll({
-      where: {},
-      include: [db.Author, db.Category]
-    }).then(function(dbItems) {
-      res.render("newreview", {
-        items: dbItems
+  app.get("/newcategory", function(req, res) {
+    db.Category.findAll({}).then(function(dbCategories) {
+      res.render("newcat", {
+        cats: dbCategories
       });
     });
   });
