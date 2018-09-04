@@ -1,5 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">TryThis</a>
+<div id="header">
+   <div class="home-content text-center">
+     <h1>Food With Friends <br> The Food We Eat!
+     </h1>
+   </div>
+ </div>
+<nav class="navbar navbar-expand-lg">
+  {{!-- <a class="navbar-brand" href="/">TryThis</a> --}}
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -20,7 +26,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/newitem">New Recomendation</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/admin">Admin</a>
+          <a class="dropdown-item" href="/newcategory">New Category</a>
           {{!-- Header when a category is selected --}}
         </div>
       </li>
@@ -28,16 +34,17 @@
     </ul>
   </div>
 </nav>
+<body class="index-body">
 {{!-- List of items/recommendations that are collapsible --}}
 <div class="accordion" id="accordionExample">
   {{#each items}}
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <a class="btn" data-toggle="collapse" data-target="#collapse{{this.id}}" aria-expanded="false" aria-controls="collapseOne">
+        <a class="btn item" data-toggle="collapse" data-target="#collapse{{this.id}}" aria-expanded="false" aria-controls="collapseOne">
           {{this.text}}
         </a>
-        <a class="small"> -{{this.Author.name}}</a>
+        <a class="small author"> -{{this.Author.name}}</a>
       </h5>
     </div>
     {{!-- Collapside section with reviews/notes --}}
@@ -49,7 +56,7 @@
         <ul>
           {{#each this.Reviews}}
           <li>
-            <a>{{comment}}</a><a>. -{{Author.name}}</a>
+            <a class="comment">{{comment}}</a><a class="author">. -{{Author.name}}</a>
           </li>
           {{/each}}
         </ul>
@@ -61,7 +68,7 @@
           <div class="form-group">
               <input id="comment{{this.id}}" placeholder="I think....."></input>
             </div>
-            <button type="submit" data-id="{{this.id}}" class="btn btn-default revsub">Submit</button>
+            <button type="submit" data-id="{{this.id}}" class="btn btn-primary revsub">Submit</button>
           </div>
         </form>
       </div>
@@ -72,7 +79,7 @@
 <div class="card">
   <div class="card-header" id="footer">
     <h5 class="mb-0">
-      <a class="btn" data-toggle="collapse" data-target="#revDrop" aria-expanded="false" aria-controls="collapseOne">
+      <a class="btn newrec" data-toggle="collapse" data-target="#revDrop" aria-expanded="false" aria-controls="collapseOne">
         Add New Recommendation
       </a>
     </h5>
@@ -96,6 +103,7 @@
     </div>
   </div>
 </div>
+</body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
   crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
