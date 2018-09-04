@@ -50,6 +50,7 @@ var handleFormSubmit = function(event) {
   var item = {
     text: $itemText.val().trim(),
     note: $itemNote.val().trim(),
+    googleMap: "",
     yelpURL: "",
     AuthorId: authId,
     CategoryId: $itemCat.val()
@@ -60,7 +61,7 @@ var handleFormSubmit = function(event) {
   // var str = "Fred's Mexican Cafe, San Diego Avenue, San Diego, CA, USA";
   // var str = "Breakfast Republic, University Avenue, San Diego, CA, USA";
   var str = $itemText.val().trim();
-  var str = "Bronx Pizza, Washington Street, San Diego, CA, USA";
+  //var str = "Bronx Pizza, Washington Street, San Diego, CA, USA";
   var splitArray = str.split(",");
   var Name = encodeURIComponent(splitArray[0]);
   var Street = encodeURIComponent(splitArray[1]);
@@ -120,8 +121,6 @@ var handleFormSubmit = function(event) {
 
           // Stuff data Yelp URL into object
           item.yelpURL = response.url;
-
-
           console.log("Item object: ", item);
           API.saveItem(item).then(function() {
             window.location.assign("/home");
