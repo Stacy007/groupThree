@@ -22,16 +22,16 @@ VALUES ("Breakfast","2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Categories (name,  createdAT, updatedAT)
 VALUES ("Lunch","2018-08-27 23:46:51", "2018-08-27 23:46:51");
 
-INSERT INTO Items (text,note, createdAT, updatedAT,AuthorId,CategoryId)
-VALUES ("Bronx Pizza","Try the 2 cheese and a drink","2018-08-27 23:46:51", "2018-08-27 23:46:51",1,1);
-INSERT INTO Items (text,note, createdAT, updatedAT,AuthorId,CategoryId)
-VALUES ("BreakFast Republic","Get there before 8:15am or crowded","2018-08-27 23:46:51", "2018-08-27 23:46:51",2,2);
+INSERT INTO Items (text, note, googleMap, yelpURL, createdAT, updatedAT,AuthorId,CategoryId)
+VALUES ("Bronx Pizza","Try the 2 cheese and a drink","https://www.google.com/maps/search/?api=1&query=%2520Washington%2520Street%2B%2520San%2520Diego%2B+CA","https://www.yelp.com/biz/bronx-pizza-san-diego","2018-08-27 23:46:51", "2018-08-27 23:46:51",1,1);
+
+INSERT INTO Items (text, note, googleMap, yelpURL, createdAT, updatedAT,AuthorId,CategoryId)
+VALUES ("BreakFast Republic","Get there before 8:15am or crowded","https://www.google.com/maps/search/?api=1&query=Breakfast+Republic%2C+University+Avenue%2C+San+Diego%2C+CA%2C+USA","https://www.yelp.com/biz/breakfast-republic-san-diego?osq=Breakfast+Republic","2018-08-27 23:46:51", "2018-08-27 23:46:51",2,2);
 
 INSERT INTO Reviews (comment, createdAT, updatedAT,ItemId, AuthorId)
 VALUES ("I really want to try this","2018-08-27 23:46:51", "2018-08-27 23:46:51",1,3);
 INSERT INTO Reviews (comment, createdAT, updatedAT,ItemId, AuthorId)
 VALUES ("Try the french toast","2018-08-27 23:46:51", "2018-08-27 23:46:51",2,4);
-
 
 
 
