@@ -1,30 +1,30 @@
 var db = require("../models");
-var firebase = require("firebase");
-var admin = require("firebase-admin");
+// var firebase = require("firebase");
+// var admin = require("firebase-admin");
 
 // Read and set environment variables
 require("dotenv").config();
 
 // Initialize Firebase
-var config = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
-};
+// var config = {
+//   apiKey: process.env.FIREBASE_API_KEY,
+//   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+//   databaseURL: process.env.FIREBASE_DATABASE_URL,
+//   projectId: process.env.FIREBASE_PROJECT_ID,
+//   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
+// };
 
-admin.initializeApp({
-  credential: admin.credential.cert({
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY
-  }),
-  databaseURL: process.env.FIREBASE_DATABASE_URL
-});
+// admin.initializeApp({
+//   credential: admin.credential.cert({
+//     projectId: process.env.FIREBASE_PROJECT_ID,
+//     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+//     privateKey: process.env.FIREBASE_PRIVATE_KEY
+//   }),
+//   databaseURL: process.env.FIREBASE_DATABASE_URL
+// });
 
-firebase.initializeApp(config);
+// firebase.initializeApp(config);
 
 module.exports = function(app) {
   // Get all items

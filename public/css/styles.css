@@ -1,8 +1,60 @@
-.list-group-item {
-  line-height: 2.5;
+/* this is for the index.handlebars */
+/* body image */
+.index-body {
+  background-image: url(/images/checkerboard.jpg);
+  height: 100%;
+  width: 100%;
+}
+.nav-width{
+  width: 600px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(173, 173, 173);
+}
+.navbar-brand {
+  align-items: center;
+  background-color: rgb(173, 173, 173);
+}
+.card-width {
+  width: 600px;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  width: 600px;
+  justify-content: center;
+  font-family: 'Lobster', cursive;
+  align-items: center;
+  background-color: #888;
+}
+.footer-width {
+  background-color: rgb(173, 173, 173);
 }
 #home {
-  height: 400px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Lobster', cursive;
+}
+#item-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.list-group-item {
+  /* line-height: 2.5; */
+  justify-content: center;
+  align-items: center;
+}
+
+
+#header {
+  height: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -12,12 +64,15 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  background-color: black;
+  background-color: #888;
+  background-blend-mode: multiply;
 }
-#home .home-content {
+#header .home-content {
   padding: 20px;
   /* background-color: #fff; */
+  opacity: none;
   background-color: none;
+  text-shadow: 1px 1px 2px rgb(4, 61, 77);
   font-family: 'Lobster', cursive;
   font-size: 2em;
   font-weight: bold;
@@ -40,15 +95,50 @@
       color: rgb(143, 87, 42);
   }
 }
-
-
-#cardDiv {
-  display: flex;
-   justify-content: space-between;
-   /* background-color: black; */
+#newitem {
+  font-family: 'Lobster', cursive; 
+  background-image: url(/images/checkerboard.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; 
+  color: rgb(161, 167, 173);
 }
-
-.card {
-  color: rgb(36, 134, 163);
-  background-color: black; 
+#account {
+  background-image: url(/images/adventure-awaits.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: rgb(224, 162, 69);
+  text-shadow:
+  -1px -1px 0 #555,
+  1px -1px 0 #555,
+  -1px 1px 0 #555,
+  1px 1px 0 #555;
+}
+.login {
+  background-image: url(/images/dinner-party.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #888;
+  text-align: center;
+  color: aquamarine;
+  text-shadow:
+  -1px -1px 0 #333,
+  1px -1px 0 #333,
+  -1px 1px 0 #333,
+  1px 1px 0 #333;
 }

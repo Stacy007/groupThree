@@ -1,6 +1,6 @@
-.list-group-item {
+/* .list-group-item {
   line-height: 2.5;
-}
+} */
 #home {
   height: 400px;
   position: relative;
@@ -42,13 +42,13 @@
 }
 
 
-#cardDiv {
+/* #cardDiv {
   display: flex;
-   justify-content: space-between;
+   justify-content: space-between; */
    /* background-color: black; */
-}
+/* } */
 
-.card {
+/* .card {
   color: rgb(36, 134, 163);
   background-color: black; 
-}
+} */
