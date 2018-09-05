@@ -35,14 +35,27 @@ $(".create-form").on("submit", function(event) {
   var emailAddr = document.getElementsByName("email")[0].value;
   var passIt = document.getElementsByName("password")[0].value;
   var nickname = document.getElementsByName("nickname")[0].value;
+  var cell = document.getElementsByName("cell")[0].value;
+
   if (!nickname){
     alert("Please enter a nickname");
     return;
   }
+
+  if (cell) {
+    // This is used to validate the phone number is 10-digit number
+    var cell = cell.replace(/[^0-9]/g, "");
+
+    if (cell.length !== 10) {
+      alert("Invalid phone number");
+    }
+  }
+
   var userdata = {
     email: emailAddr,
     password: passIt,
-    nickname: nickname
+    nickname: nickname,
+    cell: cell
   };
 
   // Create the account

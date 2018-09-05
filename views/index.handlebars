@@ -45,13 +45,16 @@
           {{this.text}}
         </a>
         <a class="small author"> -{{this.Author.name}}</a>
-      </h5>
+       <a href={{this.googleMap}} target="_blank"><img src="/images/map.png" title='open map' alt='map'></a>  
+              {{#if this.yelpURL}}<a href={{this.yelpURL}} target="_blank"><img src="/images/yelp.png" title='open yelp page' alt='yelp'></a>{{/if}}
+       
+       </h5> 
     </div>
     {{!-- Collapside section with reviews/notes --}}
     <div id="collapse{{this.id}}" class="collapse hide" aria-labelledby="headingOne">
       <div class="card-body">
         <a>Category: {{this.Category.name}}</a><br>
-        <a>{{this.Author.name}}'s initial note: {{this.note}}</a><br>
+        <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{this.Author.name}}'s initial note: {{this.note}}</a><br>
         <a>Comments:</a>
         <ul>
           {{#each this.Reviews}}

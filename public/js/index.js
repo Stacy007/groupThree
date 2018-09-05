@@ -47,6 +47,35 @@ var API = {
 var handleFormSubmit = function(event) {
   event.preventDefault();
 
+  var error = false;
+  var errorStr = "You must enter ";
+
+  if (!$itemText.val()) {
+    errorStr += "Recommendation";
+    error = true;
+  }
+
+  if (!$itemNote.val()) {
+    if (error) {
+      errorStr += ", ";
+    }
+    errorStr += "Notes";
+    error = true;
+  }
+
+  if (!$itemCat.val()) {
+    if (error) {
+      errorStr += ", ";
+    }
+    errorStr += "Category";
+    error = true;
+  }
+
+  if (error) {
+    alert(errorStr);
+    return;
+  }
+
   var item = {
     text: $itemText.val().trim(),
     note: $itemNote.val().trim(),
@@ -58,21 +87,17 @@ var handleFormSubmit = function(event) {
   console.log(item);
 
   // Now find the yelp data
-  // var str = "Fred's Mexican Cafe, San Diego Avenue, San Diego, CA, USA";
-  // var str = "Breakfast Republic, University Avenue, San Diego, CA, USA";
   var str = $itemText.val().trim();
-  //var str = "Bronx Pizza, Washington Street, San Diego, CA, USA";
   var splitArray = str.split(",");
   var Name = encodeURIComponent(splitArray[0]);
   var Street = encodeURIComponent(splitArray[1]);
   var City = encodeURIComponent(splitArray[2]);
   var State = splitArray[3];
 
-  //var term="Genesee Avenue, San Diego, CA, USA"
   var term = "name=" + Name;
 
   var url =
-    "https://api.yelp.com/v3/businesses/matches?" + 
+    "https://api.yelp.com/v3/businesses/matches?" +
     term +
     "&address1=" +
     Street +
@@ -119,13 +144,20 @@ var handleFormSubmit = function(event) {
           // Ok, at this point we have all the data we need
           console.log("Yelp business URL: ", response.url);
 
-          // Stuff data Yelp URL into object
+          // If we have Yelp data, stuff data Yelp URL into object
           item.yelpURL = response.url;
+
           console.log("Item object: ", item);
+
           API.saveItem(item).then(function() {
             window.location.assign("/home");
           });
         });
+    } else {
+      // No yelp data, so stuff data without it
+      API.saveItem(item).then(function() {
+        window.location.assign("/home");
+      });
     }
   });
 
@@ -139,12 +171,18 @@ var newReviewSubmit = function(event) {
   var comment = $("#comment" + id)
     .val()
     .trim();
+
+  if (!comment) {
+    alert("Comment cannot be blank.");
+    return;
+  }
+
   var review = {
     comment: comment,
     AuthorId: authId,
     ItemId: id
   };
-  console.log("review: ", review);
+
   API.saveReview(review).then(function() {
     window.location.reload("true");
   });
