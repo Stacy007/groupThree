@@ -1,7 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   var Item = sequelize.define("Item", {
     text: DataTypes.STRING,
-    note: DataTypes.STRING
+    note: DataTypes.STRING,
+    googleMap: DataTypes.STRING,
+    yelpURL: DataTypes.STRING
   });
 
   Item.associate = function(models) {

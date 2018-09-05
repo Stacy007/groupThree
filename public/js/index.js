@@ -3,8 +3,6 @@ var $itemText = $("#item-text");
 var $itemNote = $("#item-note");
 var $itemCat = $("#category");
 var $submitBtn = $("#submit");
-var $catSubBtn = $("#catsubmit");
-var $newCat = $("#new-cat");
 var $itemList = $("#item-list");
 var authId = window.localStorage.getItem("AuthID");
 
@@ -30,16 +28,6 @@ var API = {
       data: JSON.stringify(review)
     });
   },
-  saveCategory: function(newCat) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "/api/category",
-      data: JSON.stringify(newCat)
-    });
-  },
   getItems: function() {
     return $.ajax({
       url: "api/items",
@@ -58,20 +46,119 @@ var API = {
 // Save the new item to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
+
+  var error = false;
+  var errorStr = "You must enter ";
+
+  if (!$itemText.val()) {
+    errorStr += "Recommendation";
+    error = true;
+  }
+
+  if (!$itemNote.val()) {
+    if (error) {
+      errorStr += ", ";
+    }
+    errorStr += "Notes";
+    error = true;
+  }
+
   if (!$itemCat.val()) {
-    alert("Please select a category");
+    if (error) {
+      errorStr += ", ";
+    }
+    errorStr += "Category";
+    error = true;
+  }
+
+  if (error) {
+    alert(errorStr);
     return;
   }
 
   var item = {
     text: $itemText.val().trim(),
     note: $itemNote.val().trim(),
+    googleMap: "",
+    yelpURL: "",
     AuthorId: authId,
     CategoryId: $itemCat.val()
   };
-  console.log("item", item);
-  API.saveItem(item).then(function() {
-    window.location.assign("/home");
+  console.log(item);
+
+  // Now find the yelp data
+  var str = $itemText.val().trim();
+  var splitArray = str.split(",");
+  var Name = encodeURIComponent(splitArray[0]);
+  var Street = encodeURIComponent(splitArray[1]);
+  var City = encodeURIComponent(splitArray[2]);
+  var State = splitArray[3];
+
+  var term = "name=" + Name;
+
+  var url =
+    "https://api.yelp.com/v3/businesses/matches?" +
+    term +
+    "&address1=" +
+    Street +
+    "&city=" +
+    City +
+    "&state=" +
+    State +
+    "&country=US";
+
+  item.googleMap =
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(str);
+
+  $.ajaxPrefilter(function(options) {
+    if (options.crossDomain && $.support.cors) {
+      options.url = "https://cors-anywhere.herokuapp.com/" + options.url;
+    }
+  });
+
+  $.ajax(url, {
+    headers: {
+      Authorization:
+        "Bearer IOnOmcVyQA7g8bfItyRwB1JFyfXeJh0kXRqdwyKUjuxOP2LmvLLth68IN84LwKiAUSgtQN5Bikqdnm70id-_Sj_0U5vTewXNl7ycBkUayA45WB-ozhQ2VEq7-6AuW3Yx"
+    }
+  }).then(function(response) {
+    console.log("Yelp response", response);
+    console.log("Yelp array", response.businesses.length);
+
+    if (response.businesses.length > 0) {
+      // Got the yelp ID, now get the yelp rich data
+      url = "https://api.yelp.com/v3/businesses/" + response.businesses[0].id;
+
+      console.log("getYelpData: URL for Yelp ", url);
+      $.ajax(url, {
+        headers: {
+          Authorization:
+            "Bearer IOnOmcVyQA7g8bfItyRwB1JFyfXeJh0kXRqdwyKUjuxOP2LmvLLth68IN84LwKiAUSgtQN5Bikqdnm70id-_Sj_0U5vTewXNl7ycBkUayA45WB-ozhQ2VEq7-6AuW3Yx"
+        }
+      })
+        // $.ajax(url, { headers: { Authorization: 'Bearer s8fyDTIEAcaKIhVHE-YXji0_G6gyCKWLxbwwL5Hg1PQW-Eu_ErKZ-xeV0_xRqQ0VtEV7XpS540SpNB9q4aQkcW-fp43IhgOgfh0fHP_d8YdNVHCqqxgMCBDQ8_U6W3Yx' } })
+        .then(function(response) {
+          console.log("GetYelpData: Yelp ID search response ", response);
+
+          // Ok, at this point we have all the data we need
+          console.log("Yelp business URL: ", response.url);
+
+          // If we have Yelp data, stuff data Yelp URL into object
+          item.yelpURL = response.url;
+
+          console.log("Item object: ", item);
+
+          API.saveItem(item).then(function() {
+            window.location.assign("/home");
+          });
+        });
+    } else {
+      // No yelp data, so stuff data without it
+      API.saveItem(item).then(function() {
+        window.location.assign("/home");
+      });
+    }
   });
 
   $itemText.val("");
@@ -84,25 +171,20 @@ var newReviewSubmit = function(event) {
   var comment = $("#comment" + id)
     .val()
     .trim();
+
+  if (!comment) {
+    alert("Comment cannot be blank.");
+    return;
+  }
+
   var review = {
     comment: comment,
     AuthorId: authId,
     ItemId: id
   };
-  console.log("review: ", review);
+
   API.saveReview(review).then(function() {
     window.location.reload("true");
-  });
-};
-
-var newCatSubmit = function(event) {
-  event.preventDefault();
-  var newCat = {
-    name: $newCat.val().trim()
-  };
-  console.log("category: ", newCat);
-  API.saveCategory(newCat).then(function() {
-    window.location.assign("/newitem");
   });
 };
 
@@ -118,13 +200,14 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+/*
 // Add autocomplete functionality to recommendation
-// autocomplete = new google.maps.places.Autocomplete(
-//   document.getElementById("item-text")
-// );
+autocomplete = new google.maps.places.Autocomplete(
+  document.getElementById("item-text")
+);
+*/
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $itemList.on("click", ".delete", handleDeleteBtnClick);
 $(".revsub").on("click", newReviewSubmit);
-$catSubBtn.on("click", newCatSubmit);
