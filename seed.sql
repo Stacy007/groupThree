@@ -5,7 +5,7 @@ USE item_db;
 INSERT INTO Authors (name, email, createdAT, updatedAT)
 VALUES ("Cooper","cooper@jbeatty.com", "2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Authors (name, email, cell, createdAT, updatedAT)
-VALUES ("Jamie","jamie@jbeatty.com", "8587752704", "2018-08-27 23:46:51", "2018-08-27 23:46:51");
+VALUES ("Jamie","jamie@jbeatty.com", "8583952704", "2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Authors (name, email, createdAT, updatedAT)
 VALUES ("Annette","test@test.com","2018-08-27 23:46:51", "2018-08-27 23:46:51");
 INSERT INTO Authors (name, email, createdAT, updatedAT)

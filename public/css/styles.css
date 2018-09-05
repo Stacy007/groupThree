@@ -84,6 +84,14 @@ color: rgb(36, 134, 163);
   .item {
     font-family: 'Lobster', cursive;
     font-size: 1em;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .card-header {
+    padding-top: 4px;
+    padding-bottom: 3px; 
+    padding-left: 5px;
+
   }
   .author {
     font-family: 'Lobster', cursive;
@@ -101,3 +109,35 @@ color: rgb(36, 134, 163);
     background-size: cover; 
     color:  rgb(36, 134, 163);
   }
+  img {
+    margin-left:10px;
+  }
+
+  .commentBut {
+    border-color: rgb(36, 134, 163);
+    background-color:black;
+    color:rgb(36, 134, 163);
+    border-radius: 7px;
+    margin-bottom: 8px;
+  }
+  .revsub {
+    border-color: rgb(36, 134, 163);
+    background-color:black;
+    color:rgb(36, 134, 163);
+    border-radius: 7px;
+    padding:3px;
+    margin-left:8px;
+  }
+  .card-body {
+    padding-top:.5rem;
+  }
+  b {
+    font-weight: 600;
+  }
+.oncheck {
+color:whitesmoke;
+text-shadow: 2px 2px black;
+}
+.navbar {
+  height:65px;
+}

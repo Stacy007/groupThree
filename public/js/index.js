@@ -3,6 +3,8 @@ var $itemText = $("#item-text");
 var $itemNote = $("#item-note");
 var $itemCat = $("#category");
 var $submitBtn = $("#submit");
+var $catSubBtn = $("#catsubmit");
+var $newCat = $("#new-cat");
 var $itemList = $("#item-list");
 var authId = window.localStorage.getItem("AuthID");
 
@@ -26,6 +28,16 @@ var API = {
       type: "POST",
       url: "/api/review",
       data: JSON.stringify(review)
+    });
+  },
+  saveCategory: function(newCat) {
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "/api/category",
+      data: JSON.stringify(newCat)
     });
   },
   getItems: function() {
@@ -188,6 +200,21 @@ var newReviewSubmit = function(event) {
   });
 };
 
+var newCatSubmit = function(event) {
+  event.preventDefault();
+  if (!$newCat.val()) {
+    alert("please enter a category name");
+    return;
+  }
+  var newCat = {
+    name: $newCat.val().trim()
+  };
+  console.log("category: ", newCat);
+  API.saveCategory(newCat).then(function() {
+    window.location.assign("/newitem");
+  });
+};
+
 // handleDeleteBtnClick is called when an item's delete button is clicked
 // Remove the item from the db and refresh the list
 var handleDeleteBtnClick = function() {
@@ -211,3 +238,4 @@ autocomplete = new google.maps.places.Autocomplete(
 $submitBtn.on("click", handleFormSubmit);
 $itemList.on("click", ".delete", handleDeleteBtnClick);
 $(".revsub").on("click", newReviewSubmit);
+$catSubBtn.on("click", newCatSubmit);

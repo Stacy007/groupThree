@@ -1,18 +1,19 @@
 <div id="newitem">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
+      <div class="col-8 offset-2 oncheck">
         <h1>{{msg}}</h1>
         <br>
         <h1>Current Available Categories:</h1>
         <br>
+        <ul>
             {{#each cats}}
-            <h3>{{this.name}}</h3>
+            <li><h3>{{this.name}}</h3></li>
             {{/each}}
-
+        </ul>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="item-text">Create New Category</label>
+            <label for="item-text"><b>Create New Category:</b></label>
             <input type="text" id="new-cat" class="form-control" aria-describedby="new-cat" placeholder="new category here">
           </div>
           <div class="form-group hidden">
