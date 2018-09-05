@@ -1,73 +1,46 @@
-/* this is for the index.handlebars */
-/* body image */
+.login {
+  background-image: url(/images/dinner-party.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #888;
+  text-align: center;
+  color: aquamarine;
+  text-shadow:
+  -1px -1px 0 #333,
+  1px -1px 0 #333,
+  -1px 1px 0 #333,
+  1px 1px 0 #333;
+}
 .index-body {
   background-image: url(/images/checkerboard.jpg);
   height: 100%;
   width: 100%;
 }
-.nav-width{
-  width: 600px;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(173, 173, 173);
-}
-.navbar-brand {
-  align-items: center;
-  background-color: rgb(173, 173, 173);
-}
-.card-width {
-  width: 600px;
-  align-items: center;
-  justify-content: center;
-}
 .card {
-  width: 600px;
-  justify-content: center;
-  font-family: 'Lobster', cursive;
-  align-items: center;
-  background-color: #888;
+  color: rgb(36, 134, 163);
+  background-color: black; 
 }
-.footer-width {
-  background-color: rgb(173, 173, 173);
-}
-#home {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: 'Lobster', cursive;
-}
-#item-list {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.list-group-item {
-  /* line-height: 2.5; */
-  justify-content: center;
-  align-items: center;
-}
-
-
-#header {
-  height: 300px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url(/images/diner.png);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-color: #888;
-  background-blend-mode: multiply;
-}
-#header .home-content {
+ #header {
+   height: 300px;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-image: url(/images/diner.png);
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-size: cover;
+   background-color: #888;
+   background-blend-mode: multiply;
+ }
+ #header .home-content {
   padding: 20px;
   /* background-color: #fff; */
   opacity: none;
@@ -87,58 +60,84 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-@-webkit-keyframes title {
-  from {
-      color: rgb(36, 134, 163);
+.navbar {
+background-color: rgb(36, 134, 163);
+font-family: 'Lobster', cursive;
+font-size: 1.5em;
+font-weight: bold;
+color: rgb(36, 134, 163);
+}
+.nav-link {
+  background-color:transparent;
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+  color: black;
   }
-  to {
-      color: rgb(143, 87, 42);
+  .newrev {
+    font-weight: bold;
   }
+  input{
+    background-color:black;
+    border-color: rgb(36, 134, 163);
+    color:  rgb(36, 134, 163);
+  }
+  .item {
+    font-family: 'Lobster', cursive;
+    font-size: 1em;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .card-header {
+    padding-top: 4px;
+    padding-bottom: 3px; 
+    padding-left: 5px;
+
+  }
+  .author {
+    font-family: 'Lobster', cursive;
+  }
+  .newrec {
+    font-family: 'Lobster', cursive;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  #newitem {
+    font-family: 'Lobster', cursive; 
+    background-image: url(/images/checkerboard.jpg);
+    /* background-repeat: no-repeat; */
+    background-position: center center;
+    background-size: cover; 
+    color:  rgb(36, 134, 163);
+  }
+  img {
+    margin-left:10px;
+  }
+
+  .commentBut {
+    border-color: rgb(36, 134, 163);
+    background-color:black;
+    color:rgb(36, 134, 163);
+    border-radius: 7px;
+    margin-bottom: 8px;
+  }
+  .revsub {
+    border-color: rgb(36, 134, 163);
+    background-color:black;
+    color:rgb(36, 134, 163);
+    border-radius: 7px;
+    padding:3px;
+    margin-left:8px;
+  }
+  .card-body {
+    padding-top:.5rem;
+  }
+  b {
+    font-weight: 600;
+  }
+.oncheck {
+color:whitesmoke;
+text-shadow: 2px 2px black;
 }
-#newitem {
-  font-family: 'Lobster', cursive; 
-  background-image: url(/images/checkerboard.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover; 
-  color: rgb(161, 167, 173);
-}
-#account {
-  background-image: url(/images/adventure-awaits.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  opacity: 0.7;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  color: rgb(224, 162, 69);
-  text-shadow:
-  -1px -1px 0 #555,
-  1px -1px 0 #555,
-  -1px 1px 0 #555,
-  1px 1px 0 #555;
-}
-.login {
-  background-image: url(/images/dinner-party.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #888;
-  text-align: center;
-  color: aquamarine;
-  text-shadow:
-  -1px -1px 0 #333,
-  1px -1px 0 #333,
-  -1px 1px 0 #333,
-  1px 1px 0 #333;
+.navbar {
+  height:65px;
 }

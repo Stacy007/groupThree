@@ -5,6 +5,11 @@ var db = require("../models");
 // Read and set environment variables
 require("dotenv").config();
 
+var twilio_sid = process.env.TWILIO_SID;
+var twilio_token = process.env.TWILIO_TOKEN;
+
+const client = require('twilio')(twilio_sid, twilio_token);
+
 // Initialize Firebase
 // var config = {
 //   apiKey: process.env.FIREBASE_API_KEY,
@@ -46,8 +51,36 @@ module.exports = function(app) {
 
   // Create a new item
   app.post("/api/items", function(req, res) {
+
+    var msg = "New recommendation: " + req.body.text + " - https://youshouldtry.herokuapp.com/home";
+
+    // For everyone who has a cell phone, notify them about the new item
+    db.Author.findAll({raw : true}).then(function(dbAuthor) {
+
+      for (var i = 0; i < dbAuthor.length; i++) {
+        if (dbAuthor[i].cell)
+        {
+          // Send a text
+          client.messages.create({
+            body: msg,
+            from: '+18582951090',
+            to: '+1' + dbAuthor[i].cell
+          })
+          .then(message => console.log(message.sid))
+          .done();
+        }
+      }
+    });
+
     db.Item.create(req.body).then(function(dbItem) {
       res.json(dbItem);
+    });
+  });
+
+  // Create a new item
+  app.post("/api/category", function(req, res) {
+    db.Category.create(req.body).then(function(dbCategory) {
+      res.json(dbCategory);
     });
   });
 
@@ -78,7 +111,8 @@ module.exports = function(app) {
           // Want to stuff email and nickname in author's table here
           db.Author.create({
             name: req.body.nickname,
-            email: req.body.email
+            email: req.body.email,
+            cell: req.body.cell
           }).then(function() {
             // Need to put this back to capture in html processing
             res.json({ success: "Updated Successfully", status: 200 });

@@ -1,6 +1,6 @@
-<div id="account">
-<h1>Create Account</h1>
+<div class="login">
 <br>
+<h1>Create Account</h1>
 <br>
 <form class="create-form" action="/api/createAccount" method="Post">
     <label><h3>Email</h3></label>
@@ -11,10 +11,12 @@
     <br>
     <label><h3>Nickname</h3></label>
     <input type="text" name="nickname">
-    <button class="btn btn-outline-warning">Submit</button>
+    <label>Cell</label>
+    <input type="text" name="cell" placeholder="Optional">
+    <button>Submit</button>
 </form>
 
 {{errorMessage}}
-
+</div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/login.js"></script>
