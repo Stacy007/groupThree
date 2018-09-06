@@ -5,10 +5,10 @@ var db = require("../models");
 // Read and set environment variables
 require("dotenv").config();
 
-var twilio_sid = process.env.TWILIO_SID;
-var twilio_token = process.env.TWILIO_TOKEN;
+// var twilio_sid = process.env.TWILIO_SID;
+// var twilio_token = process.env.TWILIO_TOKEN;
 
-const client = require('twilio')(twilio_sid, twilio_token);
+// const client = require('twilio')(twilio_sid, twilio_token);
 
 // Initialize Firebase
 // var config = {
